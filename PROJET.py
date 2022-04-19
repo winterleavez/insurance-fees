@@ -272,7 +272,7 @@ print(corr) # résultats
 sns.heatmap(corr, cmap="Blues", annot=True) # présentation visuelle des résultats
 
 
-# In[ ]:
+# In[23]:
 
 
 ### Version plus complète avec les valeurs p de chaque corrélation et les corrélations significatives
@@ -289,8 +289,9 @@ def corr_sig(df=None):
 
 def plot_cor_matrix(corr, mask=None):
     f, ax = pl.subplots(figsize=(11, 9))
+    ax.set_title("Corrélations significatives")
     sns.heatmap(corr, ax=ax,
-                mask=mask,
+                mask=mask, 
                 # cosmetics
                 annot=True, vmin=-1, vmax=1, center=0,
                 cmap='coolwarm', linewidths=2, linecolor='black', cbar_kws={'orientation': 'horizontal'})
@@ -309,7 +310,7 @@ plot_cor_matrix(corr,mask)
 # age:bmi (r=0.12, p<0.001)
 
 
-# In[28]:
+# In[24]:
 
 
 ## 2.2 Régression entre les frais et la variable ayant la corrélation la plus forte (fumeur)
@@ -320,11 +321,10 @@ model = ols("smoker ~ charges", df).fit()
 print(model.summary()) # résultat, R^2 = 0.616 fort prédicteur
 
 f = pl.figure(figsize=(14,6))
-sns.violinplot(x='smoker', y='charges',data=df,palette='magma')
-ax.set_title('Diagramme en violon des frais et de la consommation de tabac'); #Visualisation de la répartition fumeur:frais
+sns.violinplot(x='smoker', y='charges',data=df,palette='magma').set_title("Diagramme en violon des frais et de la consommation de tabac"); #Visualisation de la répartition fumeur:frais
 
 
-# In[27]:
+# In[25]:
 
 
 # Visualisations supplémentaires avec une variable aussi corrélée aux frais d'assurance : l'IMC
@@ -338,7 +338,7 @@ sns.lmplot(x="bmi", y="charges", hue="smoker", data=df, palette = 'magma', size 
 # Il semble que l'effet du bmi sur les frais est moindre en comparaison avec le fait de fumer ou pas.
 
 
-# In[31]:
+# In[26]:
 
 
 # 3. Apprentissage machine
@@ -367,7 +367,7 @@ y_test_pred = lr.predict(Xtest)
 print(lr.score(Xtest,y_test)) #résultat de régression relativement bon
 
 
-# In[32]:
+# In[27]:
 
 
 ### Essayer avec un autre modèle pour un meilleur taux de prédiction (forêts aléatoires)
@@ -384,7 +384,7 @@ r2_score(y_train,forest_train_pred),
 r2_score(y_test,forest_test_pred))) # Augmentation de 10% en taux de prédiction; credits au user Dandelion sur kaggle
 
 
-# In[34]:
+# In[28]:
 
 
 #### Visualisation des résultats de la méthode forêts aléatoire
@@ -405,7 +405,7 @@ pl.hlines(y = 0, xmin = 0, xmax = 60000, lw = 2, color = 'red')
 pl.show()
 
 
-# In[39]:
+# In[29]:
 
 
 # 3. Apprentissage machine
