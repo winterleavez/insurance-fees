@@ -269,7 +269,9 @@ df.region = le.transform(df.region)
 
 corr = df.corr()
 print(corr) # résultats
-sns.heatmap(corr, cmap="Blues", annot=True) # présentation visuelle des résultats
+sns.heatmap(corr, cmap="Blues", annot=True)
+pl.title("Corrélations entre toutes les composantes"); 
+# présentation visuelle des résultats
 
 
 # In[23]:
@@ -333,7 +335,8 @@ pl.figure(figsize=(10,6))
 ax = sns.scatterplot(x='bmi',y='charges',data=df,palette='magma',hue='smoker')
 ax.set_title('Nuage de points des frais et IMC')
 
-sns.lmplot(x="bmi", y="charges", hue="smoker", data=df, palette = 'magma', size = 8)
+sns.lmplot(x="bmi", y="charges", hue="smoker", data=df, palette = 'magma', size = 8).fig.suptitle("Régressions frais:IMC selon si fumeur ou pas");
+
 
 # Il semble que l'effet du bmi sur les frais est moindre en comparaison avec le fait de fumer ou pas.
 
